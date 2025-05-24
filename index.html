@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfólio LYVOX ENERGY</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        .page {
+            width: 210mm;
+            min-height: 297mm;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            page-break-after: always;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .page:last-child {
+            page-break-after: avoid;
+        }
+        
+        /* Capa */
+        .cover-page {
+            background: linear-gradient(135deg, #f6f7f8 0%, #f3f4f7 0%, #fbfcfb 0%);
+            color: rgb(5, 41, 241);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 40px;
+            position: relative;
+        }
+        
+        .cover-page::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+        
+        logo-container {
+            background: rgb(124, 170, 162);
+            padding: 30px;
+            border-radius: 20px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            z-index: 1;
+            position: relative;
+        }
+        
+        .logo {
+            max-width: 300px;
+            height: auto;
+        }
+        
+        .cover-title {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            z-index: 1;
+            position: relative;
+        }
+        
+        .cover-subtitle {
+            font-size: 1.3em;
+            margin-bottom: 40px;
+            opacity: 0.9;
+            z-index: 1;
+            position: relative;
+        }
+        
+        .cover-tagline {
+            font-size: 1.1em;
+            font-style: italic;
+            opacity: 0.8;
+            z-index: 1;
+            position: relative;
+        }
+        
+        /* Páginas internas */
+        .content-page {
+            padding: 40px;
+            background: #fafafa;
+        }
+        
+        .page-header {
+            background: linear-gradient(90deg, #2563eb, #059669);
+            color: white;
+            padding: 20px 40px;
+            margin: -40px -40px 30px -40px;
+            clip-path: polygon(0 0, 100% 0, 95% 100%, 0 100%);
+        }
+        
+        .page-title {
+            font-size: 2em;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2em;
+        }
+        
+        .section {
+            margin-bottom: 30px;
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-left: 4px solid #059669;
+        }
+        
+        .section h3 {
+            color: #2563eb;
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .section p {
+            margin-bottom: 15px;
+            color: #555;
+            text-align: justify;
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .team-member {
+            text-align: center;
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .team-member:hover {
+            transform: translateY(-5px);
+        }
+        
+        .member-photo {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin: 0 auto 15px;
+            background: linear-gradient(135deg, #2563eb, #059669);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+        
+        .member-role {
+            color: #2563eb;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .member-name {
+            color: #333;
+            font-size: 0.9em;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .feature-item {
+            background: #f0f9ff;
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 3px solid #2563eb;
+        }
+        
+        .highlight-box {
+            background: linear-gradient(135deg, #059669, #10b981);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .contact-info {
+            background: #f8fafc;
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid #e2e8f0;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+            font-size: 0.95em;
+        }
+        
+        .contact-icon {
+            width: 20px;
+            height: 20px;
+            background: #2563eb;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.8em;
+        }
+        
+        @media print {
+            body {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            
+            .page {
+                box-shadow: none;
+                margin: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- CAPA -->
+    <div class="page cover-page">
+        <div class="logo-container">
+            <svg class="logo" viewBox="0 0 400 150" xmlns="http://www.w3.org/2000/svg">
+                <!-- House outline -->
+                <path d="M80 120 L80 70 L120 30 L160 70 L160 120 Z" stroke="#2563eb" stroke-width="6" fill="none"/>
+                <!-- Lightning bolt -->
+                <path d="M135 50 L125 75 L140 75 L130 100 L145 75 L130 75 L135 50" fill="#059669"/>
+                <!-- Text LYVOX -->
+                <text x="180" y="80" font-family="Arial, sans-serif" font-size="36" font-weight="bold" fill="#333">LYVOX</text>
+                <!-- Text ENERGY -->
+                <text x="180" y="110" font-family="Arial, sans-serif" font-size="24" font-weight="normal" fill="#059669">ENERGY</text>
+            </svg>
+        </div>
+        <img src="imagem/logolyvoxenerge.png" width="300"><br><br>
+        <h1 class="cover-title">Portfólio de Apresentação</h1>
+        <h2 class="cover-subtitle">LYVOX ENERGY</h2>
+        <p class="cover-tagline">A Energia que se Comunica com Você!</p>
+    </div>
+
+    <!-- APRESENTAÇÃO -->
+    <div class="page content-page">
+        <div class="page-header">
+            <h2 class="page-title">
+                <span class="icon">📘</span>
+                Apresentação
+            </h2>
+        </div>
+        
+        <div class="section">
+            <h3>🚀 Quem Somos</h3>
+            <p>Somos uma equipe de jovens estudantes do ensino médio técnico, apaixonados por <strong>tecnologia, inovação e sustentabilidade</strong>. Acreditamos em uma tecnologia <strong>inclusiva, educativa e transformadora</strong>.</p>
+            <p>Nosso projeto piloto é a <strong>LYVOX ENERGY – A Energia que se Comunica com Você</strong>.</p>
+        </div>
+
+        <div class="section">
+            <h3>👥 Equipe JAHW TECH</h3>
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="member-photo">
+                        <img src="imagem/foto_weverthon_recortada.png" width="89">
+                    </div>
+                    <div class="member-role">DESENVOLVEDOR</div>
+                    <div class="member-name">Wéverthon Alberto</div>
+                </div>
+                <div class="team-member">
+                    <div class="member-photo">
+                        <img src="imagem/foto_arylla.png" width="89">
+                    </div>
+                    <div class="member-role">MARKETING</div>
+                    <div class="member-name">Arylla Mikaelle</div>
+                </div>
+                <div class="team-member">
+                    <div class="member-photo">
+                        <img src="imagem/foto_humberto.png" width="89">
+                    </div>
+                    <div class="member-role">ANALISTA</div>
+                    <div class="member-name">Humberto Henrique</div>
+                </div>
+                <div class="team-member">
+                    <div class="member-photo">
+                        <img src="imagem/foto_joao.png" width="95">
+                    </div>
+                    <div class="member-role">GESTOR DE PRODUTO</div>
+                    <div class="member-name">João Matheus</div>
+                </div>
+                <div class="team-member">
+                    <div class="member-photo">
+                        <img src="imagem/foto_reginaldo.png" width="92">
+                    </div>
+                    <div class="member-role">MENTOR</div>
+                    <div class="member-name">Prof. Reginaldo Xavier</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- O PROJETO -->
+    <div class="page content-page">
+        <div class="page-header">
+            <h2 class="page-title">
+                <span class="icon">💡</span>
+                O Projeto LYVOX ENERGY
+            </h2>
+        </div>
+        
+        <div class="section">
+            <h3>🔋 Conceito</h3>
+            <p><strong>LYVOX</strong> é uma solução de gerenciamento energético inteligente. Ela combina um <strong>dispositivo físico instalado no quadro elétrico</strong> e um <strong>aplicativo mobile com inteligência artificial</strong>, que aprende com os hábitos do usuário.</p>
+        </div>
+
+        <div class="section">
+            <h3>⚡ Funcionalidades</h3>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <strong>📊 Previsão em Tempo Real</strong><br>
+                    Valor da conta de luz atualizado constantemente
+                </div>
+                <div class="feature-item">
+                    <strong>🎮 Controle Remoto</strong><br>
+                    Tomadas controláveis por app ou comando de voz
+                </div>
+                <div class="feature-item">
+                    <strong>🚨 Alertas Inteligentes</strong><br>
+                    Avisos para evitar desperdício energético
+                </div>
+                <div class="feature-item">
+                    <strong>📈 Planos de Economia</strong><br>
+                    Sugestões por horário e aparelho
+                </div>
+                <div class="feature-item">
+                    <strong>♿ Acessibilidade Total</strong><br>
+                    Comandos por voz, foco em idosos e PCDs
+                </div>
+                <div class="feature-item">
+                    <strong>🤖 IA Integrada</strong><br>
+                    Aprende hábitos e otimiza consumo
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>📲 Tecnologia</h3>
+            <p><strong>Dispositivo físico</strong> no quadro elétrico capta dados em tempo real</p>
+            <p><strong>Aplicativo mobile</strong> acessa os dados e controla aparelhos remotamente</p>
+            <p><strong>IA integrada</strong> aprende hábitos e sugere economia</p>
+        </div>
+    </div>
+
+    <!-- PARCERIA -->
+    <div class="page content-page">
+        <div class="page-header">
+            <h2 class="page-title">
+                <span class="icon">🤝</span>
+                Parceria Proposta
+            </h2>
+        </div>
+        
+        <div class="highlight-box">
+            <h3>🏢 PARCERIA COM O RESIDENCIAL LEVOK</h3>
+            <p>Propomos uma parceria piloto <strong>sem custo</strong> com o condomínio Residencial Levok para apoiar a validação da tecnologia.</p>
+        </div>
+
+        <div class="section">
+            <h3>🎯 Benefícios para o Condomínio</h3>
+            <p>• <strong>Destaque como pioneiro</strong> em inovação e sustentabilidade</p>
+            <p>• <strong>Participação direta</strong> no desenvolvimento da tecnologia</p>
+            <p>• <strong>Visibilidade positiva</strong> com a comunidade e investidores</p>
+            <p>• <strong>Potencial de economia futura</strong> com gestão inteligente de energia</p>
+        </div>
+
+        <div class="section">
+            <h3>📋 Nossos Compromissos</h3>
+            <p>• <strong>Sem interferência</strong> na rotina do condomínio</p>
+            <p>• <strong>Total respeito</strong> à privacidade dos moradores</p>
+            <p>• <strong>Sem demandas operacionais</strong> para a administração</p>
+        </div>
+
+        <div class="section">
+            <h3>🌱 Impacto Social</h3>
+            <p>• <strong>Liderado por jovens empreendedores</strong></p>
+            <p>• <strong>Estímulo à participação feminina</strong></p>
+            <p>• <strong>Geração de empregos verdes</strong></p>
+            <p>• <strong>Alinhado aos princípios ESG</strong></p>
+        </div>
+    </div>
+
+    <!-- CONTATO -->
+    <div class="page content-page">
+        <div class="page-header">
+            <h2 class="page-title">
+                <span class="icon">📞</span>
+                Contato
+            </h2>
+        </div>
+        
+        <div class="section">
+            <h3>📧 Informações de Contato</h3>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <div class="contact-icon">👤</div>
+                    <strong>Responsável:</strong> Arylla Mikaelle – Cofundadora
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">📧</div>
+                    <strong>E-mail:</strong> lyvoxenergy@gmail.com
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">📱</div>
+                    <strong>Telefone:</strong> (81) 9 9324-3804
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">📸</div>
+                    <strong>Instagram:</strong> @jahwtech
+                </div>
+            </div>
+        </div>
+
+        <div class="highlight-box">
+            <h3>🚀 Vamos Inovar Juntos!</h3>
+            <p>Estamos prontos para transformar a gestão energética com tecnologia inteligente e sustentável.</p>
+            <p><strong>Entre em contato conosco e seja parte dessa revolução!</strong></p>
+        </div>
+
+        <div class="section" style="text-align: center; margin-top: 40px;">
+            <h3>🌟 LYVOX ENERGY</h3>
+            <p style="font-style: italic; color: #059669; font-size: 1.1em;">
+                "A Energia que se Comunica com Você"
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Adicionar funcionalidade de impressão/PDF
+        function printToPDF() {
+            window.print();
+        }
+        
+        // Auto-executar impressão quando necessário
+        // printToPDF();
+    </script>
+</body>
+</html>
